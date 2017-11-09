@@ -41,12 +41,19 @@ $questionsTemplate = (($qty = \core\entities\Cabinet\Question::getUnAnsweredQuan
                     ['label' => 'File Manager', 'icon' => 'folder-open', 'url' => ['site/file-manager']],
                     ['label' => 'Banners', 'icon' => 'photo', 'url' => ['banner/index']],
                     ['label' => 'Pages', 'icon' => 'files-o', 'url' => ['category/index']],
-                    ['label' => 'Gallery', 'icon' => 'camera', 'url' => ['gallery/index']],
-                    ['label' => 'Partners', 'icon' => 'handshake-o', 'url' => ['partner/index']],
-                    ['label' => 'Team', 'icon' => 'users', 'url' => ['team/index']],
                     ['label' => 'Glossary', 'icon' => 'font', 'url' => ['glossary/index']],
                     ['label' => 'Articles', 'icon' => 'newspaper-o', 'url' => ['article/index']],
-                    ['label' => 'Success stories', 'icon' => 'smile-o', 'url' => ['success-story/index']],
+                    [
+                        'label' => 'Company',
+                        'icon' => 'building',
+                        'url' => '#',
+                        'items' => [
+                            ['label' => 'Team', 'icon' => 'users', 'url' => ['team/index']],
+                            ['label' => 'Partners', 'icon' => 'handshake-o', 'url' => ['partner/index']],
+                            ['label' => 'Gallery', 'icon' => 'camera', 'url' => ['gallery/index']],
+                            ['label' => 'Success stories', 'icon' => 'smile-o', 'url' => ['success-story/index']],
+                        ],
+                    ],
                     [
                         'label' => 'Files',
                         'icon' => 'file-text-o',
