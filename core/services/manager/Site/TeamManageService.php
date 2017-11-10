@@ -35,7 +35,7 @@ class TeamManageService extends ManagerService
     public function edit($id, TeamForm $form)
     {
         $teammate = $this->repository->get($id);
-        /** $@var Team $teammate */
+        /** @var Team $teammate */
         if ($form->imageFile) {
             if ($form->thumb) {
                 self::saveFile($form->imageFile, 'team', $form->thumb);

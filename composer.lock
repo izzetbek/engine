@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "9616dc46ee9c11ac5dc94bc539133162",
+    "content-hash": "fc60c31c3d5d3c7a92513446b8185b3d",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -259,6 +259,49 @@
                 "yii"
             ],
             "time": "2015-01-05T23:37:12+00:00"
+        },
+        {
+            "name": "himiklab/yii2-recaptcha-widget",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/himiklab/yii2-recaptcha-widget.git",
+                "reference": "64daf4d4628c6fa9275f774b927fa2d750e64ae3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/himiklab/yii2-recaptcha-widget/zipball/64daf4d4628c6fa9275f774b927fa2d750e64ae3",
+                "reference": "64daf4d4628c6fa9275f774b927fa2d750e64ae3",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "himiklab\\yii2\\recaptcha\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "HimikLab",
+                    "homepage": "https://github.com/himiklab/"
+                }
+            ],
+            "description": "Yii2 Google reCAPTCHA widget",
+            "keywords": [
+                "captcha",
+                "google",
+                "recaptcha",
+                "widget",
+                "yii2"
+            ],
+            "time": "2017-11-08T16:56:06+00:00"
         },
         {
             "name": "imagine/imagine",

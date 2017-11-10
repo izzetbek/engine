@@ -15,47 +15,51 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+    <div class="box">
+        <div class="box-body">
+            <?= GridView::widget([
+                'dataProvider' => $dataProvider,
+                'filterModel' => $searchModel,
+                'columns' => [
+                    ['class' => 'yii\grid\SerialColumn'],
 
-            [
-                'attribute' => 'userId',
-                'value' => 'user.username'
-            ],
-            [
-                'attribute' => 'webinarId',
-                'value' => 'webinar.translation.title'
-            ],
-            [
-                'attribute' => 'ask_date',
-                'filter' => DatePicker::widget([
-                    'model' => $searchModel,
-                    'attribute' => 'ask_date',
-                    'value' => 'ask_date',
-                    'pluginOptions' => [
-                        'todayHighlight' => true,
-                        'autoclose' => true,
-                        'format' => 'yyyy-mm-dd'
-                    ]
-                ]),
-                'format' => 'datetime'
-            ],
-            [
-                'attribute' => 'status',
-                'filter' => \core\helpers\QuestionHelper::statusesList(),
-                'value' => function(\core\entities\Cabinet\Question $question) {
-                    return \core\helpers\QuestionHelper::statusLabel($question->status);
-                },
-                'format' => 'raw',
-            ],
+                    [
+                        'attribute' => 'userId',
+                        'value' => 'user.username'
+                    ],
+                    [
+                        'attribute' => 'webinarId',
+                        'value' => 'webinar.translation.title'
+                    ],
+                    [
+                        'attribute' => 'ask_date',
+                        'filter' => DatePicker::widget([
+                            'model' => $searchModel,
+                            'attribute' => 'ask_date',
+                            'value' => 'ask_date',
+                            'pluginOptions' => [
+                                'todayHighlight' => true,
+                                'autoclose' => true,
+                                'format' => 'yyyy-mm-dd'
+                            ]
+                        ]),
+                        'format' => 'datetime'
+                    ],
+                    [
+                        'attribute' => 'status',
+                        'filter' => \core\helpers\QuestionHelper::statusesList(),
+                        'value' => function(\core\entities\Cabinet\Question $question) {
+                            return \core\helpers\QuestionHelper::statusLabel($question->status);
+                        },
+                        'format' => 'raw',
+                    ],
 
-            [
-                'class' => 'yii\grid\ActionColumn',
-                'template' => '{update} {delete}',
-            ],
-        ],
-    ]); ?>
+                    [
+                        'class' => 'yii\grid\ActionColumn',
+                        'template' => '{update} {delete}',
+                    ],
+                ],
+            ]); ?>
+        </div>
+    </div>
 </div>

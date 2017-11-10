@@ -16,19 +16,24 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         <?= Html::a('Create Question', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            [
-                'attribute' => 'test_id',
-                'value' => 'test.translation.title'
-            ],
+    <div class="box">
+        <div class="box-body">
+            <?= GridView::widget([
+                'dataProvider' => $dataProvider,
+                'filterModel' => $searchModel,
+                'columns' => [
+                    ['class' => 'yii\grid\SerialColumn'],
 
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
+                    'id',
+                    [
+                        'attribute' => 'test_id',
+                        'value' => 'test.translation.title'
+                    ],
+
+                    ['class' => 'yii\grid\ActionColumn'],
+                ],
+            ]); ?>
+        </div>
+    </div>
 </div>

@@ -11,6 +11,12 @@ return [
         'config',
     ],
     'components' => [
+        'reCaptcha' => [
+            'name' => 'reCaptcha',
+            'class' => 'himiklab\yii2\recaptcha\ReCaptcha',
+            'siteKey' => '6LffDA4UAAAAAHF5pwAXA8paCVk3FFomsgxavjgw',
+            'secret' => '6LffDA4UAAAAACI1LJWFzqFB6MZxxkiLeGk_37c4',
+        ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
             'cachePath' => '@common/runtime/cache',

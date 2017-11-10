@@ -30,7 +30,8 @@
         "mihaildev/yii2-elfinder": "*",
         "kartik-v/yii2-money": "^1.2@dev",
         "filsh/yii2-flags": "dev-master",
-        "wbraganca/yii2-dynamicform": "*"
+        "wbraganca/yii2-dynamicform": "*",
+        "himiklab/yii2-recaptcha-widget": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

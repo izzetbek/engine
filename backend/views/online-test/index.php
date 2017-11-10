@@ -19,47 +19,52 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         <?= Html::a('Create Online Test', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
 
-            [
-                'attribute' => 'thumb',
-                'value' => function(OnlineTest $test) {
-                    return  Html::img(Yii::getAlias('@frontendUpload/onlineTests/' . $test->thumb), ['height' => '100']);
-                },
-                'format' => 'html'
-            ],
-            [
-                'attribute' => 'title',
-                'value' => 'translation.title',
-            ],
-            [
-                'attribute' => 'created_at',
-                'filter' => DatePicker::widget([
-                    'model' => $searchModel,
-                    'attribute' => 'created_at',
-                    'pluginOptions' => [
-                        'todayHighlight' => true,
-                        'autoclose' => true,
-                        'format' => 'yyyy-mm-dd'
-                    ]
-                ]),
-                'format' => 'datetime'
-            ],
-            'passed_by',
-            [
-                'attribute' => 'status',
-                'filter' => \core\helpers\OnlineTestHelper::statusesList(),
-                'value' => function(OnlineTest $test) {
-                    return \core\helpers\OnlineTestHelper::statusLabel($test->status);
-                },
-                'format' => 'raw',
-            ],
+    <div class="box">
+        <div class="box-body">
+            <?= GridView::widget([
+                'dataProvider' => $dataProvider,
+                'filterModel' => $searchModel,
+                'columns' => [
+                    ['class' => 'yii\grid\SerialColumn'],
 
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
+                    [
+                        'attribute' => 'thumb',
+                        'value' => function(OnlineTest $test) {
+                            return  Html::img(Yii::getAlias('@frontendUpload/onlineTests/' . $test->thumb), ['height' => '100']);
+                        },
+                        'format' => 'html'
+                    ],
+                    [
+                        'attribute' => 'title',
+                        'value' => 'translation.title',
+                    ],
+                    [
+                        'attribute' => 'created_at',
+                        'filter' => DatePicker::widget([
+                            'model' => $searchModel,
+                            'attribute' => 'created_at',
+                            'pluginOptions' => [
+                                'todayHighlight' => true,
+                                'autoclose' => true,
+                                'format' => 'yyyy-mm-dd'
+                            ]
+                        ]),
+                        'format' => 'datetime'
+                    ],
+                    'passed_by',
+                    [
+                        'attribute' => 'status',
+                        'filter' => \core\helpers\OnlineTestHelper::statusesList(),
+                        'value' => function(OnlineTest $test) {
+                            return \core\helpers\OnlineTestHelper::statusLabel($test->status);
+                        },
+                        'format' => 'raw',
+                    ],
+
+                    ['class' => 'yii\grid\ActionColumn'],
+                ],
+            ]); ?>
+        </div>
+    </div>
 </div>

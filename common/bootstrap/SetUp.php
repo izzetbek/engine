@@ -13,6 +13,7 @@ use core\repositories\Site\PartnerRepository;
 use core\repositories\Site\SuccessStoryRepository;
 use core\repositories\Site\TagRepository;
 use core\repositories\Site\TeamRepository;
+use core\repositories\TrainingRepository;
 use core\repositories\UserRepository;
 use core\repositories\WebinarRepository;
 use core\services\auth\AuthService;
@@ -32,6 +33,7 @@ use core\services\manager\Site\PartnerManageService;
 use core\services\manager\Site\StoryManageService;
 use core\services\manager\Site\TagManageService;
 use core\services\manager\Site\TeamManageService;
+use core\services\manager\TrainingManageService;
 use core\services\manager\UserManagerService;
 use core\services\manager\WebinarManageService;
 use yii\base\BootstrapInterface;
@@ -89,6 +91,9 @@ class SetUp implements BootstrapInterface
         $container->setSingleton(OnlineTestRepository::class, function() {
             return new OnlineTestRepository();
         });
+        $container->setSingleton(TrainingRepository::class, function() {
+            return new TrainingRepository();
+        });
 
         $container->setSingleton(PasswordResetService::class);
         $container->setSingleton(AuthService::class);
@@ -114,5 +119,6 @@ class SetUp implements BootstrapInterface
         $container->setSingleton(DocumentManageService::class);
 
         $container->setSingleton(TestManageService::class);
+        $container->setSingleton(TrainingManageService::class);
     }
 }

@@ -37,7 +37,7 @@ class MultilingualFormInputs extends InputWidget
             }
         }
         $formGroupClass = 'col-md-4';
-        if ($textInputsCount <= 4) {
+        if ($textInputsCount <= 4 && $textInputsCount !== 0) {
             $formGroupClass = 'col-md-' . (12 / $textInputsCount);
         }
 

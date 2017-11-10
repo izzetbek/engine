@@ -2,6 +2,7 @@
 
 namespace core\forms;
 
+use himiklab\yii2\recaptcha\ReCaptchaValidator;
 use yii\base\Model;
 
 /**
@@ -26,7 +27,7 @@ class ContactForm extends Model
             // email has to be a valid email address
             ['email', 'email'],
             // verifyCode needs to be entered correctly
-            ['verifyCode', 'captcha'],
+            ['verifyCode', ReCaptchaValidator::className()],
         ];
     }
 

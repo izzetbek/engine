@@ -2,41 +2,50 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use core\entities\Training\Training;
 use kartik\widgets\DatePicker;
 
 /* @var $this yii\web\View */
-/* @var $searchModel backend\forms\WebinarSearch */
+/* @var $searchModel backend\forms\TrainingSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Webinars';
+$this->title = 'Trainings';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="webinar-index">
-
+<div class="training-index">
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Webinar', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Training', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-
     <div class="box">
         <div class="box-body">
             <?= GridView::widget([
                 'dataProvider' => $dataProvider,
                 'filterModel' => $searchModel,
+                'tableOptions' => [
+                    'class' => 'table table-striped table-bordered with-image'
+                ],
                 'columns' => [
                     ['class' => 'yii\grid\SerialColumn'],
 
                     [
+                        'attribute' => 'thumb',
+                        'value' => function(Training $model) {
+                            return  Html::img(Yii::getAlias('@frontendUpload/' . $model::SAVE_FOLDER . '/' . $model->thumb), ['height' => '100']);
+                        },
+                        'format' => 'html'
+                    ],
+                    [
                         'attribute' => 'title',
-                        'value' => 'translation.title'
+                        'value' => 'translation.title',
                     ],
                     'price',
                     [
-                        'attribute' => 'beginDate',
+                        'attribute' => 'begin_date',
                         'filter' => DatePicker::widget([
                             'model' => $searchModel,
-                            'attribute' => 'beginDate',
+                            'attribute' => 'begin_date',
                             'pluginOptions' => [
                                 'todayHighlight' => true,
                                 'autoclose' => true,
@@ -46,15 +55,15 @@ $this->params['breadcrumbs'][] = $this->title;
                         'format' => 'datetime'
                     ],
                     [
-                        'attribute' => 'status',
-                        'filter' => \core\helpers\WebinarHelper::statusesList(),
-                        'value' => function(\core\entities\Webinar\Webinar $webinar) {
-                            return \core\helpers\WebinarHelper::statusLabel($webinar->status);
+                        'attribute' => 'draft',
+                        'filter' => \core\helpers\FieldHelper::draftList(),
+                        'value' => function(Training $model) {
+                            return \core\helpers\FieldHelper::draftLabel($model->draft);
                         },
                         'format' => 'raw',
                     ],
 
-                    ['class' => 'yii\grid\ActionColumn'],
+                    ['class' => 'backend\grid\ActionColumn'],
                 ],
             ]); ?>
         </div>

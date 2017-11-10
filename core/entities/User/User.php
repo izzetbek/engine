@@ -1,6 +1,7 @@
 <?php
 namespace core\entities\User;
 
+use core\entities\Training\Training;
 use core\entities\Webinar\Webinar;
 use lhs\Yii2SaveRelationsBehavior\SaveRelationsBehavior;
 use Yii;
@@ -148,6 +149,11 @@ class User extends ActiveRecord implements IdentityInterface
     public function getWebinars()
     {
         return $this->hasMany(Webinar::className(), ['id' => 'webinar_id'])->viaTable('{{%users_webinars}}', ['user_id' => 'id']);
+    }
+
+    public function getTrainings()
+    {
+        return $this->hasMany(Training::className(), ['id' => 'training_id'])->viaTable('{{%users_trainings}}', ['user_id' => 'id']);
     }
 
 

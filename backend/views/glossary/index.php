@@ -17,26 +17,31 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         <?= Html::a('Create Glossary', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
 
-            [
-                'attribute' => 'title',
-                'value' => 'translation.title'
-            ],
-            [
-                'attribute' => 'draft',
-                'filter' => \core\helpers\FieldHelper::draftList(),
-                'value' => function(\core\entities\Site\Glossary\Glossary $glossary) {
-                    return \core\helpers\FieldHelper::draftLabel($glossary->draft);
-                },
-                'format' => 'raw',
-            ],
+    <div class="box">
+        <div class="box-body">
+            <?= GridView::widget([
+                'dataProvider' => $dataProvider,
+                'filterModel' => $searchModel,
+                'columns' => [
+                    ['class' => 'yii\grid\SerialColumn'],
 
-            ['class' => 'backend\grid\ActionColumn'],
-        ],
-    ]); ?>
+                    [
+                        'attribute' => 'title',
+                        'value' => 'translation.title'
+                    ],
+                    [
+                        'attribute' => 'draft',
+                        'filter' => \core\helpers\FieldHelper::draftList(),
+                        'value' => function(\core\entities\Site\Glossary\Glossary $glossary) {
+                            return \core\helpers\FieldHelper::draftLabel($glossary->draft);
+                        },
+                        'format' => 'raw',
+                    ],
+
+                    ['class' => 'backend\grid\ActionColumn'],
+                ],
+            ]); ?>
+        </div>
+    </div>
 </div>

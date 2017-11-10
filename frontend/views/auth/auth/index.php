@@ -29,6 +29,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     If you forgot your password you can <?= Html::a('reset it', ['auth/reset/request-password-reset']) ?>.
                 </div>
 
+                <?= $form->field($model, 'verifyCode')->widget(\himiklab\yii2\recaptcha\ReCaptcha::className())->label(false) ?>
+
                 <div class="form-group">
                     <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
                 </div>
