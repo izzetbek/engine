@@ -18,3 +18,8 @@ $('.remove-item').on('click', function (e) {
     });
     $(this).closest('.item').remove();
 });
+
+$('.attachComment').click(function (e) {
+    e.preventDefault();
+    $(this).next('.attach-comment').toggleClass('hidden');
+});

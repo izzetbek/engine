@@ -36,6 +36,7 @@ AppAsset::register($this);
             ],
         ]);
         $menuItems = [
+            ['label' => 'Webinars', 'url' => ['site/index']],
             ['label' => 'My questions', 'url' => ['/questions']],
             ['label' => 'Ask a question', 'url' => ['/ask']],
         ];

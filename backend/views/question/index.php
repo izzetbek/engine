@@ -27,10 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'attribute' => 'userId',
                         'value' => 'user.username'
                     ],
-                    [
-                        'attribute' => 'webinarId',
-                        'value' => 'webinar.translation.title'
-                    ],
+                    'title',
                     [
                         'attribute' => 'ask_date',
                         'filter' => DatePicker::widget([

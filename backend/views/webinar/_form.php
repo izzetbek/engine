@@ -4,8 +4,25 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model core\entities\Webinar\Webinar */
+/* @var $model \core\forms\manager\Webinar\WebinarForm */
 /* @var $form yii\widgets\ActiveForm */
+
+$thumbOptions = [
+    'showCaption' => false,
+    'showUpload' => false,
+    'showRemove' => false,
+];
+$additionalOptions = [];
+if ($model->thumb) {
+    $additionalOptions = [
+        'initialPreview' => Yii::getAlias('@frontendUpload/webinars/' . $model->thumb),
+        'initialPreviewConfig' => [
+            ['url' => \yii\helpers\Url::toRoute(['article/delete-thumb','id' => $model->getId()])],
+        ],
+        'initialPreviewAsData'=>true,
+        'overwriteInitial' => true,
+    ];
+}
 ?>
 
 <div class="webinar-form">
@@ -29,6 +46,12 @@ use yii\widgets\ActiveForm;
                     <h3 class="box-title">General</h3>
                 </div>
                 <div class="box-body">
+
+                    <?= $form->field($model, 'imageFile')->widget(\kartik\widgets\FileInput::className(), [
+                        'pluginOptions' => \yii\helpers\ArrayHelper::merge($thumbOptions, $additionalOptions),
+                        'options' => ['accept' => 'image/*']
+                    ]); ?>
+
                     <?= $form->field($model, 'price')->widget(\kartik\money\MaskMoney::className(), [
                         'pluginOptions' => [
                             'prefix' => 'AZN ',

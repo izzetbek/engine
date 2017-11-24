@@ -43,6 +43,7 @@ $questionsTemplate = (($qty = \core\entities\Cabinet\Question::getUnAnsweredQuan
                     ['label' => 'Pages', 'icon' => 'files-o', 'url' => ['category/index']],
                     ['label' => 'Glossary', 'icon' => 'font', 'url' => ['glossary/index']],
                     ['label' => 'Articles', 'icon' => 'newspaper-o', 'url' => ['article/index']],
+                    ['label' => 'Vacancies', 'icon' => 'bullhorn', 'url' => ['vacancy/index']],
                     [
                         'label' => 'Company',
                         'icon' => 'building',
@@ -95,6 +96,7 @@ $questionsTemplate = (($qty = \core\entities\Cabinet\Question::getUnAnsweredQuan
                             ['label' => 'Webinars', 'icon' => 'file-movie-o', 'url' => ['sales/webinar/index']],
                         ],
                     ],
+                    ['label' => 'Users', 'icon' => 'user', 'url' => ['user/index']],
                     [
                         'label' => 'System',
                         'icon' => 'gear',
@@ -102,7 +104,6 @@ $questionsTemplate = (($qty = \core\entities\Cabinet\Question::getUnAnsweredQuan
                         'items' => [
                             ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii']],
                             ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug']],
-                            ['label' => 'Users', 'icon' => 'user', 'url' => ['user/index']],
                             ['label' => 'Configuration', 'icon' => 'gears', 'url' => ['config/index']],
                         ],
                     ],

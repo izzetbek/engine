@@ -25,6 +25,7 @@ return [
         ],
         'config' => [
             'class' => 'common\components\Config',
+            'cache' => 3600,
         ],
         'authManager' => [
             'class' => 'core\components\AuthManager',

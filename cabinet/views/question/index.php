@@ -4,6 +4,7 @@
 /** @var $questions \core\entities\Cabinet\Question[]  */
 
 use yii\helpers\Html;
+use core\entities\Cabinet\Question;
 
 $this->title = 'My questions';
 $this->params['breadcrumbs'][] = $this->title;
@@ -21,12 +22,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 'columns' => [
                     ['class' => 'yii\grid\SerialColumn'],
                     [
-                        'attribute' => 'webinar.translation.title',
-                        'label' => 'Title',
-                        'value' => function(\core\entities\Cabinet\Question $question) {
-                            return  Html::a($question->webinar->translation->title, ['question/view', 'id' => $question->id]);
+                        'attribute' => 'title',
+                        'value' => function (Question $question) {
+                            return Html::a($question->title, ['question/view', 'id' => $question->id]);
                         },
-                        'format' => 'raw'
+                        'format' => 'html'
                     ],
                     [
                         'attribute' => 'ask_date',
@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     [
                         'attribute' => 'status',
                         'filter' => \core\helpers\QuestionHelper::statusesList(),
-                        'value' => function(\core\entities\Cabinet\Question $question) {
+                        'value' => function (Question $question) {
                             return \core\helpers\QuestionHelper::statusLabel($question->status);
                         },
                         'format' => 'raw',

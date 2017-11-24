@@ -4,6 +4,7 @@ namespace core\forms\manager\Webinar;
 
 use core\entities\Webinar\Webinar;
 use core\forms\CompositeForm;
+use yii\web\UploadedFile;
 
 /**
  * Class WebinarForm
@@ -12,6 +13,9 @@ use core\forms\CompositeForm;
  */
 class WebinarForm extends CompositeForm
 {
+    public $thumb;
+    /** @var  UploadedFile $imageFile */
+    public $imageFile;
     public $price;
     public $beginDate;
     public $status;
@@ -28,6 +32,7 @@ class WebinarForm extends CompositeForm
     {
         $translations = [];
         if($webinar) {
+            $this->thumb = $webinar->thumb;
             $this->price = $webinar->price;
             $this->beginDate = $webinar->beginDate;
             $this->status = $webinar->status;
@@ -49,6 +54,7 @@ class WebinarForm extends CompositeForm
     {
         return [
             [['price', 'beginDate'], 'required'],
+            ['imageFile', 'file', 'extensions' => 'png, jpg'],
             ['price', 'number', 'numberPattern' => '/^\s*[-+]?[0-9]*[.,]?[0-9]+([eE][-+]?[0-9]+)?\s*$/'],
             ['status', 'number']
         ];

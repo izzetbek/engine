@@ -11,6 +11,7 @@ use core\entities\Meta;
 /**
  * Class Webinar
  * @property integer $id
+ * @property string $thumb
  * @property integer $price
  * @property integer $beginDate
  * @property integer $status
@@ -23,6 +24,8 @@ class Webinar extends ActiveRecord
     const STATUS_NOT_STARTED = 5;
     const STATUS_ACTIVE = 10;
     const STATUS_FINISHED = 15;
+
+    const SAVE_FOLDER = 'webinars';
 
     public static function tableName()
     {
@@ -39,9 +42,10 @@ class Webinar extends ActiveRecord
         ];
     }
 
-    public static function create($price, $beginDate)
+    public static function create($thumb, $price, $beginDate)
     {
         $webinar = new self();
+        $webinar->thumb = $thumb;
         $webinar->price = $price;
         $webinar->beginDate = $beginDate;
         $webinar->status = self::STATUS_NOT_STARTED;
@@ -49,8 +53,9 @@ class Webinar extends ActiveRecord
         return $webinar;
     }
 
-    public function edit($price, $beginDate)
+    public function edit($thumb, $price, $beginDate)
     {
+        $this->thumb = $thumb;
         $this->price = $price;
         $this->beginDate = $beginDate;
     }

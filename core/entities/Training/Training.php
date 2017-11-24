@@ -88,7 +88,7 @@ class Training extends ActiveRecord
 
     public function getUsers()
     {
-        return $this->hasMany(User::className(), ['id' => 'user_id'])->viaTable('{{%users_trainings}}', ['training_id' => 'id']);
+        return $this->hasMany(User::className(), ['id' => 'users_id'])->viaTable('{{%users_trainings}}', ['trainings_id' => 'id']);
     }
 
     #####

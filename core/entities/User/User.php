@@ -15,6 +15,11 @@ use yii\web\IdentityInterface;
  * User model
  * @property integer $id
  * @property string $username
+ * @property string $name
+ * @property string $surname
+ * @property string $company
+ * @property string $phone
+ * @property string $thumb
  * @property string $password_hash
  * @property string $password_reset_token
  * @property string $email_confirm_token
@@ -27,6 +32,7 @@ use yii\web\IdentityInterface;
  * @property string $role
  * @property Network[] $networks
  * @property Webinar[] $webinars
+ * @property Training[] $trainings
  */
 
 class User extends ActiveRecord implements IdentityInterface
@@ -35,11 +41,19 @@ class User extends ActiveRecord implements IdentityInterface
     const STATUS_ACTIVE = 10;
 
     const DEFAULT_ROLE = 'user';
+    const DEFAULT_THUMB = 'default.png';
 
-    public static function create(string $username, string $email, string $password, string $role)
+    const SAVE_FOLDER = 'users';
+
+    public static function create($username, $name, $surname, $company, $phone, $thumb, $email, $password, $role)
     {
         $user = new self();
         $user->username = $username;
+        $user->name = $name;
+        $user->surname = $surname;
+        $user->company = $company;
+        $user->phone = $phone;
+        $user->thumb = (!empty($thumb))? $thumb : self::DEFAULT_THUMB;
         $user->email = $email;
         $user->setPassword(!empty($password)? $password : Yii::$app->security->generateRandomString());
         $user->created_at = time();
@@ -49,9 +63,14 @@ class User extends ActiveRecord implements IdentityInterface
         return $user;
     }
 
-    public function edit(string $username, string $email, string $role)
+    public function edit($username, $name, $surname, $company, $phone, $thumb, $email, $role)
     {
         $this->username = $username;
+        $this->name = $name;
+        $this->surname = $surname;
+        $this->company = $company;
+        $this->phone = $phone;
+        $this->thumb = $thumb;
         $this->email = $email;
         $this->role = $role;
         $this->updated_at = time();
@@ -68,10 +87,15 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
 
-    public static function requestSignup(string $username, string $email, string $password)
+    public static function requestSignup($username, $name, $surname, $company, $phone, $thumb, $email, $password)
     {
         $user = new self();
         $user->username = $username;
+        $user->name = $name;
+        $user->surname = $surname;
+        $user->company = $company;
+        $user->phone = $phone;
+        $user->thumb = $thumb;
         $user->email = $email;
         $user->setPassword($password);
         $user->created_at = time();
@@ -153,7 +177,12 @@ class User extends ActiveRecord implements IdentityInterface
 
     public function getTrainings()
     {
-        return $this->hasMany(Training::className(), ['id' => 'training_id'])->viaTable('{{%users_trainings}}', ['user_id' => 'id']);
+        return $this->hasMany(Training::className(), ['id' => 'trainings_id'])->viaTable('{{%users_trainings}}', ['users_id' => 'id']);
+    }
+
+    public function getOnlineTests()
+    {
+        return $this->hasMany(Training::className(), ['id' => 'online_tests_id'])->viaTable('{{%users_online_tests}}', ['users_id' => 'id']);
     }
 
 

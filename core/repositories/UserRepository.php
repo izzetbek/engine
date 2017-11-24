@@ -8,7 +8,7 @@ class UserRepository
 {
     public function existsByPasswordResetToken($token)
     {
-        return (bool) User::findByPasswordResetToken($token);
+        return User::findByPasswordResetToken($token);
     }
 
     public function getByPasswordResetToken($token)

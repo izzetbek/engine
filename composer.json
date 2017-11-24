@@ -31,7 +31,8 @@
         "kartik-v/yii2-money": "^1.2@dev",
         "filsh/yii2-flags": "dev-master",
         "wbraganca/yii2-dynamicform": "*",
-        "himiklab/yii2-recaptcha-widget": "*"
+        "himiklab/yii2-recaptcha-widget": "*",
+        "loveorigami/yii2-modal-ajax": "@dev"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

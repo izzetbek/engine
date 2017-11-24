@@ -1,6 +1,8 @@
 <?php
 namespace common\bootstrap;
 
+use core\repositories\Cabinet\AnswerRepository;
+use core\repositories\Cabinet\QuestionRepository;
 use core\repositories\OnlineTest\OnlineTestRepository;
 use core\repositories\Site\ArticleRepository;
 use core\repositories\Site\DocumentRepository;
@@ -93,6 +95,13 @@ class SetUp implements BootstrapInterface
         });
         $container->setSingleton(TrainingRepository::class, function() {
             return new TrainingRepository();
+        });
+
+        $container->setSingleton(QuestionRepository::class, function() {
+            return new QuestionRepository();
+        });
+        $container->setSingleton(AnswerRepository::class, function() {
+            return new AnswerRepository();
         });
 
         $container->setSingleton(PasswordResetService::class);

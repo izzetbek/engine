@@ -6,6 +6,7 @@ use core\entities\OnlineTest\Question\Question;
 use yii\db\ActiveRecord;
 use core\entities\Meta;
 use lhs\Yii2SaveRelationsBehavior\SaveRelationsBehavior;
+use core\entities\User\User;
 
 /**
  * Class OnlineTest
@@ -92,6 +93,11 @@ class OnlineTest extends ActiveRecord
     public function getQuestions()
     {
         return $this->hasMany(Question::className(), ['test_id' => 'id']);
+    }
+
+    public function getUsers()
+    {
+        return $this->hasMany(User::className(), ['id' => 'users_id'])->viaTable('{{%users_online_tests}}', ['online_tests_id' => 'id']);
     }
 
     #####

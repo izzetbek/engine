@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="col-lg-5">
             <?php $form = ActiveForm::begin(['id' => 'question-form']); ?>
 
-                <?= $form->field($model, 'webinar')->dropDownList(\core\helpers\WebinarHelper::userWebinarsList($user)) ?>
+                <?= $form->field($model, 'title')->textInput() ?>
 
                 <?= $form->field($model, 'body')->textarea(['rows' => 6]) ?>
 

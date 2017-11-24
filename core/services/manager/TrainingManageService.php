@@ -23,7 +23,7 @@ class TrainingManageService
         if ($form->imageFile) {
             $form->thumb = self::saveFile($form->imageFile, Training::SAVE_FOLDER);
         }
-        $training = Training::create($form->thumb, $form->price, $form->beginDate);
+        $training = Training::create($form->thumb, $form->price, strtotime($form->beginDate));
         foreach ($form->translations as $translation) {
             $training->addTranslation(
                 $translation->language,
@@ -51,7 +51,7 @@ class TrainingManageService
                 $form->thumb = self::saveFile($form->imageFile, Training::SAVE_FOLDER);
             }
         }
-        $training->edit($form->thumb, $form->price, $form->beginDate);
+        $training->edit($form->thumb, $form->price, strtotime($form->beginDate));
         $training->revokeTranslations();
         foreach ($form->translations as $translation) {
             $training->addTranslation(

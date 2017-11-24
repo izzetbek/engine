@@ -12,7 +12,7 @@ use core\entities\Cabinet\Question;
 class QuestionSearch extends Model
 {
     public $userId;
-    public $webinarId;
+    public $title;
     public $ask_date;
     public $status;
     /**
@@ -21,7 +21,8 @@ class QuestionSearch extends Model
     public function rules()
     {
         return [
-            [['userId', 'webinarId', 'ask_date', 'status'], 'integer'],
+            [['userId', 'ask_date', 'status'], 'integer'],
+            ['title', 'safe']
         ];
     }
 
@@ -62,10 +63,11 @@ class QuestionSearch extends Model
         // grid filtering conditions
         $query->andFilterWhere([
             'user_id' => $this->userId,
-            'webinar_id' => $this->webinarId,
             'ask_date' => $this->ask_date,
             'status' => $this->status,
         ]);
+
+        $query->andFilterWhere(['like', 'title', $this->title]);
 
         return $dataProvider;
     }

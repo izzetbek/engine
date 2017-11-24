@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "fc60c31c3d5d3c7a92513446b8185b3d",
+    "content-hash": "260c4e2213d774831245f925968f94c3",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -1682,6 +1682,50 @@
                 "yii2"
             ],
             "time": "2017-04-08T16:12:54+00:00"
+        },
+        {
+            "name": "loveorigami/yii2-modal-ajax",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/loveorigami/yii2-modal-ajax.git",
+                "reference": "7c5863dc980c64d0d4c055f1b330946b24e13302"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/loveorigami/yii2-modal-ajax/zipball/7c5863dc980c64d0d4c055f1b330946b24e13302",
+                "reference": "7c5863dc980c64d0d4c055f1b330946b24e13302",
+                "shasum": ""
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "lo\\widgets\\modal\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Karnbrock Gmbh",
+                    "homepage": "http://karnbrock.biz"
+                },
+                {
+                    "name": "Lukyanov Andrey",
+                    "homepage": "http://loveorigami.info"
+                }
+            ],
+            "description": "A wrapper around Yii2 Bootstrap Modal for using an ActiveForm via AJAX inside",
+            "homepage": "https://github.com/loveorigami/yii2-modal-ajax",
+            "keywords": [
+                "ajax-modal",
+                "bootstrap",
+                "modal",
+                "yii2"
+            ],
+            "time": "2017-11-09T10:52:36+00:00"
         },
         {
             "name": "mihaildev/yii2-ckeditor",
@@ -5144,7 +5188,8 @@
     "stability-flags": {
         "zxbodya/yii2-gallery-manager": 20,
         "kartik-v/yii2-money": 20,
-        "filsh/yii2-flags": 20
+        "filsh/yii2-flags": 20,
+        "loveorigami/yii2-modal-ajax": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

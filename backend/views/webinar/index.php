@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use kartik\widgets\DatePicker;
+use core\entities\Webinar\Webinar;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\forms\WebinarSearch */
@@ -27,6 +28,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 'columns' => [
                     ['class' => 'yii\grid\SerialColumn'],
 
+                    [
+                        'attribute' => 'thumb',
+                        'value' => function(Webinar $model) {
+                            return  Html::img(Yii::getAlias('@frontendUpload/' . $model::SAVE_FOLDER . '/' . $model->thumb), ['height' => '100']);
+                        },
+                        'format' => 'html'
+                    ],
                     [
                         'attribute' => 'title',
                         'value' => 'translation.title'

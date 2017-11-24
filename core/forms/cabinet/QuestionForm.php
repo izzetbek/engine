@@ -6,7 +6,7 @@ use yii\base\Model;
 
 class QuestionForm extends Model
 {
-    public $webinar;
+    public $title;
     public $body;
     public $verifyCode;
 
@@ -17,7 +17,7 @@ class QuestionForm extends Model
     {
         return [
             // webinar and body are required
-            [['webinar', 'body'], 'required'],
+            [['title', 'body'], 'required'],
             // verifyCode needs to be entered correctly
             ['verifyCode', 'captcha'],
         ];

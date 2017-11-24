@@ -33,4 +33,9 @@ class FieldHelper
             'class' => $class
         ]);
     }
+
+    public static function duration($from, $to)
+    {
+        return \Yii::$app->formatter->asDate($from) . ' / ' . \Yii::$app->formatter->asDate($to);
+    }
 }

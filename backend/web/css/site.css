@@ -151,3 +151,12 @@ a.desc:after {
 .doc-preview > span {
     font-size: 140px;
 }
+
+.attach-comment {
+    margin-top: 10px;
+}
+
+button.stripped {
+    border: none;
+    background: transparent;
+}

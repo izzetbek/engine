@@ -3,20 +3,18 @@
 namespace core\entities\Cabinet;
 
 use core\entities\User\User;
-use core\entities\Webinar\Webinar;
 use yii\db\ActiveRecord;
 
 /**
  * @property integer $id
  * @property integer $user_id
- * @property integer $webinar_id
+ * @property string $title
  * @property string $question
- * @property string $answer
  * @property integer $ask_date
  * @property integer $status
  *
  * @property User $user
- * @property Webinar $webinar
+ * @property Answer[] $answers
  */
 class Question extends ActiveRecord
 {
@@ -28,21 +26,41 @@ class Question extends ActiveRecord
         return '{{%questions}}';
     }
 
-    public static function create($userId, $webinarId, $question)
+    public static function create($userId, $title, $question)
     {
         $object = new static();
         $object->user_id = $userId;
-        $object->webinar_id = $webinarId;
+        $object->title = $title;
         $object->question = $question;
         $object->ask_date = time();
         $object->status = self::STATUS_WAIT;
         return $object;
     }
 
-    public function answer($answer)
+    public function edit($title, $quetion)
     {
-        $this->answer = $answer;
+        $this->title = $title;
+        $this->question = $quetion;
+    }
+
+    public function complete()
+    {
         $this->status = self::STATUS_ANSWERED;
+    }
+
+    public function open()
+    {
+        $this->status = self::STATUS_WAIT;
+    }
+
+    public function isComplete()
+    {
+        return $this->status === self::STATUS_ANSWERED;
+    }
+
+    public function isFrom($id)
+    {
+        return $this->user_id === $id;
     }
 
     public static function getUnAnsweredQuantity()
@@ -55,8 +73,8 @@ class Question extends ActiveRecord
         return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
 
-    public function getWebinar()
+    public function getAnswers()
     {
-        return $this->hasOne(Webinar::className(), ['id' => 'webinar_id']);
+        return $this->hasMany(Answer::className(), ['question_id' => 'id']);
     }
 }

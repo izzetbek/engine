@@ -8,6 +8,8 @@ use core\services\manager\UserManagerService;
 use Yii;
 use core\entities\User\User;
 use backend\forms\UserSearch;
+use yii\db\Query;
+use yii\helpers\Json;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -149,6 +151,22 @@ class UserController extends Controller
             Yii::$app->session->setFlash($e->getMessage());
         }
         return $this->redirect(['index']);
+    }
+
+    public function actionCompanyList($q = null, $id = null)
+    {
+        \Yii::$app->response->format = yii\web\Response::FORMAT_JSON;
+        $out = ['results' => ['id' => '', 'text' => '']];
+        if ($q) {
+            $query = new Query();
+            $query->select(['id', 'company'])->from('{{%users}}')->andFilterWhere(['like', 'company', $q])->orderBy('company');
+            $command = $query->createCommand();
+            $data = $command->queryAll();
+            $out['results'] = array_values($data);
+        } elseif ($id > 0) {
+            $out['results'] = ['id' => $id, 'text' => User::findOne(['id' => $id])->company];
+        }
+        return $out;
     }
 
     /**

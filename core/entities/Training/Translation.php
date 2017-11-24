@@ -37,7 +37,7 @@ class Translation extends ActiveRecord
 
     public function isFor($id, $language)
     {
-        return $this->webinar_id === $id && $this->language === $language;
+        return $this->training_id === $id && $this->language === $language;
     }
 
     public static function create($language, $title, $description, Meta $meta)

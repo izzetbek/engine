@@ -2,7 +2,8 @@
 
 namespace backend\controllers;
 
-use core\forms\manager\Cabinet\AnswerForm;
+use core\entities\Cabinet\Answer;
+use core\forms\cabinet\AnswerForm;
 use core\services\cabinet\QuestionService;
 use Yii;
 use core\entities\Cabinet\Question;
@@ -63,6 +64,7 @@ class QuestionController extends Controller
     public function actionUpdate($id)
     {
         $question = $this->findModel($id);
+        $answers = Answer::find()->joinWith('user')->andWhere(['question_id' => $id])->orderBy('answer_date')->asArray()->all();
         $form = new AnswerForm();
         if ($form->load(Yii::$app->request->post()) && $form->validate()) {
             try {
@@ -75,7 +77,8 @@ class QuestionController extends Controller
         }
         return $this->render('update', [
             'model' => $form,
-            'question' => $question
+            'question' => $question,
+            'answers' => $answers,
         ]);
     }
 

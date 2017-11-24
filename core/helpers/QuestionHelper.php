@@ -39,4 +39,17 @@ class QuestionHelper
     {
         return ArrayHelper::getValue(self::statusesList(), $status);
     }
+
+    public static function buildTree($data, $rootID = null)
+    {
+        $tree = [];
+        foreach ($data as $id => $node) {
+            if ($node['parent_id'] == $rootID) {
+                unset($data[$id]);
+                $node['childs'] = self::buildTree($data, $node['id']);
+                $tree[] = $node;
+            }
+        }
+        return $tree;
+    }
 }

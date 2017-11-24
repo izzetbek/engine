@@ -10,6 +10,7 @@ use backend\forms\WebinarSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * WebinarController implements the CRUD actions for Webinar model.
@@ -75,13 +76,17 @@ class WebinarController extends Controller
     {
         $form = new WebinarForm();
 
-        if ($form->load(Yii::$app->request->post()) && $form->validate()) {
-            try {
-                $id = $this->service->create($form);
-                return $this->redirect(['view', 'id' => $id]);
-            } catch (\DomainException $e) {
-                Yii::$app->errorHandler->logException($e);
-                Yii::$app->session->setFlash($e->getMessage());
+        if ($form->load(Yii::$app->request->post())) {
+            $file = UploadedFile::getInstance($form, 'imageFile');
+            $form->imageFile = $file;
+            if ($form->validate()) {
+                try {
+                    $id = $this->service->create($form);
+                    return $this->redirect(['view', 'id' => $id]);
+                } catch (\DomainException $e) {
+                    Yii::$app->errorHandler->logException($e);
+                    Yii::$app->session->setFlash($e->getMessage());
+                }
             }
         }
         return $this->render('create', [
@@ -99,13 +104,17 @@ class WebinarController extends Controller
     {
         $webinar = $this->findModel($id);
         $form = new WebinarForm($webinar);
-        if ($form->load(Yii::$app->request->post()) && $form->validate()) {
-            try {
-                $this->service->edit($id, $form);
-                return $this->redirect(['view', 'id' => $id]);
-            } catch (\DomainException $e) {
-                Yii::$app->errorHandler->logException($e);
-                Yii::$app->session->setFlash($e->getMessage());
+        if ($form->load(Yii::$app->request->post())) {
+            $file = UploadedFile::getInstance($form, 'imageFile');
+            $form->imageFile = $file;
+            if ($form->validate()) {
+                try {
+                    $this->service->edit($id, $form);
+                    return $this->redirect(['view', 'id' => $id]);
+                } catch (\DomainException $e) {
+                    Yii::$app->errorHandler->logException($e);
+                    Yii::$app->session->setFlash($e->getMessage());
+                }
             }
         }
         return $this->render('update', [
